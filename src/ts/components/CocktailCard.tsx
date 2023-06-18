@@ -36,22 +36,22 @@ const CocktailCard = ({ cocktail }: { cocktail: CocktailType }) => {
       </a>
       <div id={`details-${cocktail.name}`}>
         <ul>
-          {cocktail.ingredients.map(ingredient => {
+          {cocktail.ingredients.map((ingredient, index) => {
             return (
-              <li key={`${cocktail.name}-${ingredient.ingredient}`}>
+              <li key={`${cocktail.name}-${ingredient.ingredient}-${index}`}>
                 {ingredient.amount ? `${ingredient.amount} ${ingredient.ingredient}` : ingredient.ingredient}
               </li>
             )
           })}
         </ul>
-        <p>
+        <div>
           <b>Directions</b>
           <ol>
             {cocktail.directions.map((step, index) => {
               return <li key={`${cocktail.name}-step-${index}`}>{step}</li>
             })}
           </ol>
-        </p>
+        </div>
       </div>
     </div>
   )
