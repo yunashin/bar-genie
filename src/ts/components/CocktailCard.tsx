@@ -24,6 +24,7 @@ const CocktailCard = ({ cocktail }: { cocktail: CocktailType }) => {
         })}
       </div>
       <a
+        href="#details"
         onClick={() => {
           setShowFullContents(!showFullContents);
           if ($(`#details-${cocktail.name}`).css('display') === "none") {
