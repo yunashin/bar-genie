@@ -2,6 +2,13 @@
   "name": "bar-genie",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://yunashin.github.io/flexicography",
+  "keywords": [
+    "bar",
+    "genie",
+    "bar genie",
+    "bar-genie"
+  ],
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
