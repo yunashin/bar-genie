@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/bar-genie/static/css/main.5b34cb25.css",
-    "main.js": "/bar-genie/static/js/main.ac8894aa.js",
+    "main.js": "/bar-genie/static/js/main.e34bc735.js",
     "static/js/787.d0103fbd.chunk.js": "/bar-genie/static/js/787.d0103fbd.chunk.js",
     "index.html": "/bar-genie/index.html",
     "main.5b34cb25.css.map": "/bar-genie/static/css/main.5b34cb25.css.map",
-    "main.ac8894aa.js.map": "/bar-genie/static/js/main.ac8894aa.js.map",
+    "main.e34bc735.js.map": "/bar-genie/static/js/main.e34bc735.js.map",
     "787.d0103fbd.chunk.js.map": "/bar-genie/static/js/787.d0103fbd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5b34cb25.css",
-    "static/js/main.ac8894aa.js"
+    "static/js/main.e34bc735.js"
   ]
 }
