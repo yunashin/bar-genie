@@ -127,7 +127,7 @@ const Body = () => {
           }}>Clear all filters</button>
         </span>
       </div>
-      {areFiltersApplied && (
+      {Boolean(selectedSpirits.length || selectedFlavors.length) && (
         <div className="m-top-20 m-left-20">
           <b>Filters: </b>
           {selectedSpirits.map((spirit, index) => !selectedFlavors.length && index === selectedSpirits.length - 1 ? spirit : `${spirit}, `)}
