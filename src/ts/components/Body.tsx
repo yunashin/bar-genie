@@ -109,7 +109,7 @@ const Body = () => {
             setShowDropdown={setShowFlavorsDropdown}
           />
         </span>
-        <span className="m-left-20">
+        <span className="m-left-20 m-top-mobile">
           <input
             className="search"
             type="text"
@@ -119,7 +119,7 @@ const Body = () => {
             placeholder="Search.."
             value={searchTerm} />
         </span>
-        <span className="m-left-20">
+        <span className="m-left-20 m-top-mobile">
           <button onClick={() => {
             setSelectedSpirits([]);
             setSelectedFlavors([]);
@@ -147,6 +147,7 @@ const Body = () => {
               return (
                 <IngredientCheckbox
                   ingredient={ingredient}
+                  key={ingredient}
                   onIngredientChange={onIngredientChange}
                   selectedIngredients={selectedIngredients}
                 />

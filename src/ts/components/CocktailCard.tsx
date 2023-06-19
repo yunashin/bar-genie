@@ -7,7 +7,14 @@ const CocktailCard = ({ cocktail }: { cocktail: CocktailType }) => {
   const [showFullContents, setShowFullContents] = useState(false);
 
   return (
-    <div className="cocktail-card" key={cocktail.name}>
+    <div className="cocktail-card" key={cocktail.name} onClick={() => {
+      setShowFullContents(!showFullContents);
+      if ($(`#details-${cocktail.name}`).css('display') === "none") {
+        $(`#details-${cocktail.name}`).slideDown();
+      } else {
+        $(`#details-${cocktail.name}`).slideUp();
+      }
+    }}>
       <h2><b>{cocktail.label}</b></h2>
       {Boolean(cocktail.spirits.length) && (
         <div>
@@ -23,17 +30,6 @@ const CocktailCard = ({ cocktail }: { cocktail: CocktailType }) => {
           return index === cocktail.flavors.length - 1 ? flavor : `${flavor}, `;
         })}
       </div>
-      <a
-        onClick={() => {
-          setShowFullContents(!showFullContents);
-          if ($(`#details-${cocktail.name}`).css('display') === "none") {
-            $(`#details-${cocktail.name}`).slideDown();
-          } else {
-            $(`#details-${cocktail.name}`).slideUp();
-          }
-        }}>
-        {showFullContents ? 'Hide details' : 'Show details'}
-      </a>
       <div id={`details-${cocktail.name}`}>
         <ul>
           {cocktail.ingredients.map((ingredient, index) => {

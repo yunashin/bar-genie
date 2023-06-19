@@ -26,6 +26,14 @@
   margin-top: 20px;
 }
 
+@media (max-width: 670px) {
+  .m-top-mobile {
+    margin-top: 10px;
+    height: fit-content;
+    display: inline-block;
+  }
+}
+
 .body {
   margin-top: 20px;
   color: white;
@@ -91,6 +99,7 @@ h2 {
   text-align: left;
   border-radius: 0.25rem;
   max-width: 200px;
+  z-index: 1;
 }
 
 .dropdown>p {
@@ -133,6 +142,14 @@ h2 {
   border-radius: 20px;
   width: 400px;
   background-color: #455672;
+  cursor: pointer;
+}
+
+@media (max-width: 670px) {
+  .cocktail-card {
+    margin: 20px 20px 20px 20px;
+    width: 300px;
+  }
 }
 
 [id*=details-] {
@@ -145,7 +162,14 @@ h2 {
   margin: 20px;
 }
 
+@media (max-width: 670px) {
+  .ingredients {
+    display: none;
+  }
+}
+
 .search {
   height: 30px;
   border-radius: 5px;
+  cursor: pointer;
 }
