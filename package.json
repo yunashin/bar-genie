@@ -53,7 +53,6 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@types/jquery": "^3.5.16",
-    "gh-pages": "^5.0.0"
+    "@types/jquery": "^3.5.16"
   }
 }
