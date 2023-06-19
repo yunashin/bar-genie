@@ -123,6 +123,7 @@ const Body = () => {
           <button onClick={() => {
             setSelectedSpirits([]);
             setSelectedFlavors([]);
+            setSearchTerm('');
           }}>Clear all filters</button>
         </span>
       </div>
