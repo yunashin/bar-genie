@@ -1,4 +1,4 @@
-export type SpiritType = 'bourbon' | 'brandy' | 'gin' | 'Pisco' | 'rum' | 'tequila' | 'vodka' | 'whiskey' | 'none';
+export type SpiritType = 'bourbon' | 'brandy' | 'gin' | 'Pisco' | 'rum' | 'tequila' | 'vodka' | 'whiskey' | 'none' | 'non-alcoholic';
 export type FlavorType = 'bitter' | 'dry' | 'floral' | 'fruity' | 'rich' | 'savory' | 'sour' | 'spicy' | 'sweet';
 export type IngredientType = {
   ingredient: string;
@@ -126,9 +126,9 @@ export const cocktailsData: CocktailsDataType = [
   },
   {
     name: 'babybellini',
-    label: "Baby Bellini (non-alcoholic)",
+    label: "Baby Bellini",
     flavors: ['fruity', 'sweet'],
-    spirits: ['none'],
+    spirits: ['non-alcoholic'],
     ingredients: [
       {
         ingredient: 'peach juice',
@@ -907,6 +907,35 @@ export const cocktailsData: CocktailsDataType = [
     directions: [
       'Shake the cherry brandy, pineapple juice, kirsch, and egg white well over crushed ice until frosted.',
       'Pour into a chilled highball glass and top with a frozen maraschino cherry.'
+    ],
+  },
+  {
+    name: 'chocolatemartini',
+    label: "Chocolate Martini",
+    flavors: ['rich', 'sweet'],
+    spirits: ['vodka'],
+    ingredients: [
+      {
+        ingredient: 'vodka',
+        amount: '4 oz.'
+      },
+      {
+        ingredient: "Bailey's",
+        amount: '2 oz.'
+      },
+      {
+        ingredient: 'creme de cacao',
+        amount: '2 oz.'
+      },
+      {
+        ingredient: 'chocolate syrup',
+        amount: null
+      },
+    ],
+    directions: [
+      'Drizzle chocolate syrup inside a martini glass and then add chocolate syrup to a plate and coat the rim of the glass.',
+      "Combine the Bailey's, creme de cacao, and vodka in a shaker filled with ice. Shake until thoroughly chilled.",
+      'Strain drink into glass and garnis with shaved chocolate.'
     ],
   },
   {
@@ -2036,9 +2065,9 @@ export const cocktailsData: CocktailsDataType = [
   },
   {
     name: 'minicolada',
-    label: "Mini Colada (non-alcoholic)",
+    label: "Mini Colada",
     flavors: ['fruity', 'sweet'],
-    spirits: ['none'],
+    spirits: ['non-alcoholic'],
     ingredients: [
       {
         ingredient: 'milk',
@@ -2401,6 +2430,34 @@ export const cocktailsData: CocktailsDataType = [
     ],
   },
   {
+    name: 'peanutbuttercup',
+    label: "Peanut Butter Cup",
+    flavors: ['rich', 'sweet'],
+    spirits: ['whiskey'],
+    ingredients: [
+      {
+        ingredient: 'peanut butter whiskey',
+        amount: '3 oz.'
+      },
+      {
+        ingredient: 'creme de cacao',
+        amount: '1 oz.'
+      },
+      {
+        ingredient: 'milk',
+        amount: '1-2 oz.'
+      },
+      {
+        ingredient: 'salt',
+        amount: null
+      },
+    ],
+    directions: [
+      'Add cracked ice, peanut butter whiskey, creme de cacao, and milk to a rocks glass.',
+      'Add salt to taste and stir.'
+    ],
+  },
+  {
     name: 'pinacolada',
     label: "Pina Colada",
     flavors: ['fruity', 'sweet'],
@@ -2536,9 +2593,9 @@ export const cocktailsData: CocktailsDataType = [
   },
   {
     name: 'prohibitionpunch',
-    label: "Prohibition Punch (non-alcoholic)",
+    label: "Prohibition Punch",
     flavors: ['fruity', 'sour', 'sweet'],
-    spirits: ['none'],
+    spirits: ['non-alcoholic'],
     ingredients: [
       {
         ingredient: 'apple juice',
@@ -2619,9 +2676,9 @@ export const cocktailsData: CocktailsDataType = [
   },
   {
     name: 'redapplesunset',
-    label: "Red Apple Sunset (non-alcoholic)",
+    label: "Red Apple Sunset",
     flavors: ['fruity', 'sour', 'sweet'],
-    spirits: ['none'],
+    spirits: ['non-alcoholic'],
     ingredients: [
       {
         ingredient: 'apple juice',
@@ -3181,9 +3238,9 @@ export const cocktailsData: CocktailsDataType = [
   },
   {
     name: 'sunrise',
-    label: "Sunrise (non-alcoholic)",
+    label: "Sunrise",
     flavors: ['fruity', 'sour', 'sweet'],
-    spirits: ['none'],
+    spirits: ['non-alcoholic'],
     ingredients: [
       {
         ingredient: 'orange juice',
@@ -3348,6 +3405,34 @@ export const cocktailsData: CocktailsDataType = [
       'Blend crushed ice in a blender with the lemon juice, simple syrup, and chopped peach until slushy.',
       'Pour into a chilled rocks glass, top off with soda water, and stir gently.',
       'Garnish with raspberries and serve.'
+    ],
+  },
+  {
+    name: 'valenciacafe43',
+    label: "Valencia Cafe 43",
+    flavors: ['fruity', 'rich', 'sweet'],
+    spirits: ['none'],
+    ingredients: [
+      {
+        ingredient: 'Licor 43 Horchata',
+        amount: '1 1/2 oz.'
+      },
+      {
+        ingredient: 'pineapple juice',
+        amount: '1 1/2 oz.'
+      },
+      {
+        ingredient: 'cold brew',
+        amount: '1/2 oz.'
+      },
+      {
+        ingredient: 'cinnamon',
+        amount: null
+      },
+    ],
+    directions: [
+      'Pour the liquid ingredients into a shaker full of ice and shake well.',
+      'Strain into a coupe glass and garnish with cinnamon.'
     ],
   },
   {

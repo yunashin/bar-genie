@@ -14,6 +14,7 @@ const spiritOptions = [
   { name: 'Vodka', value: 'vodka' },
   { name: 'Whiskey', value: 'whiskey' },
   { name: 'None', value: 'none' },
+  { name: 'Non-alcoholic', value: 'non-alcoholic' },
 ];
 
 const flavorOptions = [
@@ -80,8 +81,8 @@ const Body = () => {
   return (
     <div className="body">
       <div>
-        <span className="m-left-20"><b>Filter by</b></span>
-        <span className="m-left-20">
+        <span className="m-left-20 mobile-hidden"><b>Filter by</b></span>
+        <span className="m-left-20 mobile-hidden">
           <MultiSelect
             children={<>Spirits</>}
             onChange={onSpiritsChange}
@@ -95,7 +96,7 @@ const Body = () => {
             setShowDropdown={setShowSpiritsDropdown}
           />
         </span>
-        <span className="m-left-20">
+        <span className="m-left-20 mobile-hidden">
           <MultiSelect
             children={<>Flavors</>}
             onChange={onFlavorsChange}
@@ -119,7 +120,7 @@ const Body = () => {
             placeholder="Search.."
             value={searchTerm} />
         </span>
-        <span className="m-left-20 m-top-mobile">
+        <span className="m-left-20 mobile-hidden">
           <button onClick={() => {
             setSelectedSpirits([]);
             setSelectedFlavors([]);

@@ -168,6 +168,12 @@ h2 {
   }
 }
 
+@media (max-width: 670px) {
+  .mobile-hidden {
+    display: none;
+  }
+}
+
 .search {
   height: 30px;
   border-radius: 5px;
