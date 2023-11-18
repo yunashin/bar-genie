@@ -42,7 +42,9 @@ const Body = () => {
   const filteredCocktails = cocktailsData.filter(cocktail =>
     (selectedSpirits.length ? selectedSpirits.every((spirit) => cocktail.spirits.includes(spirit as SpiritType)) : true) &&
     (selectedFlavors.length ? selectedFlavors.every(flavor => cocktail.flavors.includes(flavor as FlavorType)) : true) &&
-    (cocktail.label.toLowerCase().includes(lowercaseSearchTerm) || cocktail.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(lowercaseSearchTerm)))
+    (cocktail.label.toLowerCase().includes(lowercaseSearchTerm) ||
+      cocktail.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(lowercaseSearchTerm)) ||
+      cocktail.directions.some(direction => direction.toLowerCase().includes(lowercaseSearchTerm)))
   );
 
   const ingredients = Array.from(new Set(

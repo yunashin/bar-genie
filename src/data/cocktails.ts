@@ -1605,6 +1605,38 @@ export const cocktailsData: CocktailsDataType = [
     ],
   },
   {
+    name: 'jinglejuice',
+    label: "Jingle Juice",
+    flavors: ['fruity', 'sweet'],
+    spirits: ['vodka'],
+    ingredients: [
+      {
+        ingredient: 'whipped cream vodka',
+        amount: '1 750ml bottle'
+      },
+      {
+        ingredient: 'sparkling rose',
+        amount: '1 750ml bottle'
+      },
+      {
+        ingredient: 'cherry soda',
+        amount: '1 2L bottle'
+      },
+      {
+        ingredient: 'cranberries',
+        amount: null
+      },
+      {
+        ingredient: 'rosemary sprigs',
+        amount: null
+      },
+    ],
+    directions: [
+      'In a large bowl or pitcher full of ice, combine all of the liquid ingredients.',
+      'Stir well and serve garnished with cranberries and rosemary sprigs (serves 12).',
+    ],
+  },
+  {
     name: 'kamikaze',
     label: "Kamikaze",
     flavors: ['dry', 'fruity', 'sour'],
