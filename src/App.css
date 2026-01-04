@@ -8,10 +8,30 @@
   background-color: #282c34;
   min-height: 60px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.aria-logo {
+  width: 4vw;
+  height: 4vw;
+  border: 5px white solid;
+  border-radius: 50%;
+  margin: 1em;
+  cursor: pointer;
+}
+
+@media (max-width: 670px) {
+  .aria-logo {
+    width: 16vw;
+    height: 16vw;
+  }
 }
 
 .m-left-20 {
@@ -39,7 +59,7 @@
 }
 
 .body {
-  margin-top: 20px;
+  margin: 20px;
   color: white;
 }
 
@@ -106,7 +126,7 @@ h2 {
   z-index: 1;
 }
 
-.dropdown>p {
+.dropdown > p {
   margin: 0;
   padding: 0.375rem 0.88rem;
   border-bottom: 1px solid rgb(235, 235, 235);
@@ -114,12 +134,12 @@ h2 {
   cursor: pointer;
 }
 
-.dropdown>p:hover {
+.dropdown > p:hover {
   color: #fff;
   background-color: #3d83cf;
 }
 
-.dropdown>p:last-child {
+.dropdown > p:last-child {
   border-bottom: 0 none;
 }
 
@@ -160,7 +180,7 @@ h2 {
   }
 }
 
-[id*=details-] {
+[id*="details-"] {
   display: none;
 }
 
