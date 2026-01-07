@@ -2973,7 +2973,7 @@ export const cocktailsData: CocktailsDataType = [
     name: "oldfashioned",
     label: "Old Fashioned",
     flavors: ["dry"],
-    spirits: ["bourbon", "whiskey"],
+    spirits: ["bourbon", "rye"],
     ingredients: [
       {
         ingredient: "bourbon",
