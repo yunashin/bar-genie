@@ -1,5 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
-import { FlavorType, SpiritType, cocktailsData } from "../../data/cocktails";
+import { useCallback, useEffect, useMemo, useState } from "react";
+
+import {
+  FlavorType,
+  SpiritType,
+  cocktailsData,
+  IngredientType,
+} from "../../data/cocktails";
 import MultiSelect from "./helperComponents/MultiSelect";
 import { useFindCocktailsContext } from "../context/FindCocktailsContext";
 import CocktailCard from "./CocktailCard";
@@ -36,18 +42,17 @@ const Body = () => {
   const [showSpiritsDropdown, setShowSpiritsDropdown] = useState(false);
   const [showFlavorsDropdown, setShowFlavorsDropdown] = useState(false);
   const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
+  const [shouldFilterEveryIngredient, setShouldFilterEveryIngredient] =
+    useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const [ingredientSearchTerm, setIngredientSearchTerm] = useState("");
   const {
     selectedSpirits,
     selectedFlavors,
     setSelectedSpirits,
     setSelectedFlavors,
   } = useFindCocktailsContext();
-  const lowercaseSearchTerm = searchTerm.toLowerCase();
-
-  const areFiltersApplied = Boolean(
-    selectedSpirits.length || selectedFlavors.length || searchTerm !== ""
-  );
+  const lowercaseSearchTerm = searchTerm.toLocaleLowerCase();
 
   const favoriteCocktailNames = JSON.parse(
     window.localStorage.getItem("favoriteCocktails") || "[]"
@@ -60,25 +65,33 @@ const Body = () => {
           if (showFavorites) {
             return favoriteCocktailNames.includes(cocktail.name);
           }
+          const areIngredientsSelected = shouldFilterEveryIngredient
+            ? cocktail.ingredients.every((ingredient) =>
+                selectedIngredients.includes(ingredient.ingredient)
+              )
+            : cocktail.ingredients.some((ingredient) =>
+                selectedIngredients.includes(ingredient.ingredient)
+              );
           return (
             (selectedSpirits.length
-              ? selectedSpirits.every((spirit) =>
+              ? selectedSpirits.some((spirit) =>
                   cocktail.spirits.includes(spirit as SpiritType)
                 )
               : true) &&
             (selectedFlavors.length
-              ? selectedFlavors.every((flavor) =>
+              ? selectedFlavors.some((flavor) =>
                   cocktail.flavors.includes(flavor as FlavorType)
                 )
               : true) &&
-            (cocktail.label.toLowerCase().includes(lowercaseSearchTerm) ||
+            areIngredientsSelected &&
+            (cocktail.label.toLocaleLowerCase().includes(lowercaseSearchTerm) ||
               cocktail.ingredients.some((ingredient) =>
                 ingredient.ingredient
-                  .toLowerCase()
+                  .toLocaleLowerCase()
                   .includes(lowercaseSearchTerm)
               ) ||
               cocktail.directions.some((direction) =>
-                direction.toLowerCase().includes(lowercaseSearchTerm)
+                direction.toLocaleLowerCase().includes(lowercaseSearchTerm)
               ))
           );
         })
@@ -89,17 +102,23 @@ const Body = () => {
       favoriteCocktailNames,
       lowercaseSearchTerm,
       selectedFlavors,
+      selectedIngredients,
       selectedSpirits,
+      shouldFilterEveryIngredient,
       showFavorites,
     ]
   );
 
   const ingredients = Array.from(
     new Set(
-      filteredCocktails
+      cocktailsData
         .flatMap((cocktail) => cocktail.ingredients)
-        .map((ingredient) => ingredient.ingredient)
+        .map((ingredient: IngredientType) => ingredient.ingredient)
     )
+  );
+
+  const everyIngredientIsSelected = ingredients.every((ingredient) =>
+    selectedIngredients.includes(ingredient)
   );
 
   const onSpiritsChange = (selectedSpirit: string) => {
@@ -122,22 +141,227 @@ const Body = () => {
     }
   };
 
-  const onIngredientChange = (selectedIngredient: string) => {
-    if (selectedIngredients.includes(selectedIngredient)) {
-      setSelectedIngredients(
-        selectedIngredients.filter(
-          (ingredient) => ingredient !== selectedIngredient
-        )
-      );
-    } else {
-      setSelectedIngredients([...selectedIngredients, selectedIngredient]);
-    }
-  };
+  const onIngredientChange = useCallback(
+    (selectedIngredient: string) => {
+      if (selectedIngredients.includes(selectedIngredient)) {
+        setSelectedIngredients(
+          selectedIngredients.filter(
+            (ingredient) => ingredient !== selectedIngredient
+          )
+        );
+      } else {
+        setSelectedIngredients([...selectedIngredients, selectedIngredient]);
+      }
+    },
+    [selectedIngredients]
+  );
 
   useEffect(() => {
     setSelectedIngredients(ingredients);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFlavors, selectedSpirits]);
+
+  const areFiltersApplied = Boolean(
+    selectedSpirits.length || selectedFlavors.length || searchTerm !== ""
+  );
+
+  const filteredCocktailsIgnoringIngredients = useMemo(
+    () =>
+      cocktailsData
+        .filter((cocktail) => {
+          return (
+            (selectedSpirits.length
+              ? selectedSpirits.some((spirit) =>
+                  cocktail.spirits.includes(spirit as SpiritType)
+                )
+              : true) &&
+            (selectedFlavors.length
+              ? selectedFlavors.some((flavor) =>
+                  cocktail.flavors.includes(flavor as FlavorType)
+                )
+              : true) &&
+            (cocktail.label.toLocaleLowerCase().includes(lowercaseSearchTerm) ||
+              cocktail.ingredients.some((ingredient) =>
+                ingredient.ingredient
+                  .toLocaleLowerCase()
+                  .includes(lowercaseSearchTerm)
+              ) ||
+              cocktail.directions.some((direction) =>
+                direction.toLocaleLowerCase().includes(lowercaseSearchTerm)
+              ))
+          );
+        })
+        .sort((cocktailA, cocktailB) =>
+          cocktailA.name.localeCompare(cocktailB.name)
+        ),
+    [lowercaseSearchTerm, selectedFlavors, selectedSpirits]
+  );
+
+  const checkedIngredients = useMemo(
+    () =>
+      ingredients
+        .filter((ingredient) => {
+          const isIncludedInResults = areFiltersApplied
+            ? filteredCocktailsIgnoringIngredients.some((cocktail) =>
+                cocktail.ingredients.some(
+                  (ing) => ing.ingredient === ingredient
+                )
+              )
+            : true;
+          if (selectedIngredients.includes(ingredient) && isIncludedInResults) {
+            return ingredientSearchTerm !== ""
+              ? ingredient
+                  .toLocaleLowerCase()
+                  .includes(ingredientSearchTerm.toLocaleLowerCase())
+              : true;
+          }
+          return false;
+        })
+        .sort((a, b) =>
+          a.toLocaleLowerCase().localeCompare(b.toLocaleLowerCase())
+        ),
+    [
+      areFiltersApplied,
+      filteredCocktailsIgnoringIngredients,
+      ingredients,
+      ingredientSearchTerm,
+      selectedIngredients,
+    ]
+  );
+
+  const uncheckedIngredients = useMemo(
+    () =>
+      ingredients
+        .filter((ingredient) => {
+          const isIncludedInResults = areFiltersApplied
+            ? filteredCocktailsIgnoringIngredients.some((cocktail) =>
+                cocktail.ingredients.some(
+                  (ing) => ing.ingredient === ingredient
+                )
+              )
+            : true;
+          if (
+            !selectedIngredients.includes(ingredient) &&
+            isIncludedInResults
+          ) {
+            return ingredientSearchTerm !== ""
+              ? ingredient
+                  .toLocaleLowerCase()
+                  .includes(ingredientSearchTerm.toLocaleLowerCase())
+              : true;
+          }
+          return false;
+        })
+        .sort((a, b) =>
+          a.toLocaleLowerCase().localeCompare(b.toLocaleLowerCase())
+        ),
+    [
+      areFiltersApplied,
+      filteredCocktailsIgnoringIngredients,
+      ingredients,
+      ingredientSearchTerm,
+      selectedIngredients,
+    ]
+  );
+
+  const ingredientSearchInput = document.getElementById(
+    "ingredient-search-input"
+  );
+  const ingredientSearchInputXButton = document.getElementById(
+    "ingredient-search-input-x-button"
+  );
+
+  useEffect(() => {
+    ingredientSearchInputXButton?.addEventListener("click", () => {
+      ingredientSearchInput?.focus();
+    });
+  }, [ingredientSearchInput, ingredientSearchInputXButton]);
+
+  const IngredientContainer = useMemo(() => {
+    return (
+      <div className="ingredients">
+        <div>
+          <div className="flex align-center">
+            <input
+              id="toggle-all-ingredients-checkbox"
+              type="checkbox"
+              checked={everyIngredientIsSelected}
+              onClick={() => {
+                if (everyIngredientIsSelected) {
+                  setSelectedIngredients([]);
+                } else {
+                  setSelectedIngredients(ingredients);
+                }
+              }}
+              onChange={() => {}}
+            />
+            <b>Ingredients for all results</b>
+          </div>
+          <div className="flex align-center m-bottom-20">
+            <button
+              className="and-or-toggle-button"
+              onClick={() =>
+                setShouldFilterEveryIngredient(!shouldFilterEveryIngredient)
+              }
+            >
+              {shouldFilterEveryIngredient ? "ALL" : "ANY"}
+            </button>
+            <input
+              id="ingredient-search-input"
+              className="ingredient-search-input"
+              type="text"
+              onChange={(e) => setIngredientSearchTerm(e.target.value)}
+              value={ingredientSearchTerm}
+              placeholder="Search.."
+            />
+            <div
+              id="ingredient-search-input-x-button"
+              className="link-button"
+              onClick={() => {
+                setIngredientSearchTerm("");
+              }}
+            >
+              X
+            </div>
+          </div>
+        </div>
+        <div className="ingredient-list">
+          {checkedIngredients.map((ingredient) => {
+            return (
+              <IngredientCheckbox
+                ingredient={ingredient}
+                key={ingredient}
+                onIngredientChange={onIngredientChange}
+                selectedIngredients={selectedIngredients}
+              />
+            );
+          })}
+          {Boolean(
+            checkedIngredients.length && uncheckedIngredients.length
+          ) && <hr />}
+          {uncheckedIngredients.map((ingredient) => {
+            return (
+              <IngredientCheckbox
+                ingredient={ingredient}
+                key={ingredient}
+                onIngredientChange={onIngredientChange}
+                selectedIngredients={selectedIngredients}
+              />
+            );
+          })}
+        </div>
+      </div>
+    );
+  }, [
+    checkedIngredients,
+    everyIngredientIsSelected,
+    ingredients,
+    ingredientSearchTerm,
+    onIngredientChange,
+    selectedIngredients,
+    shouldFilterEveryIngredient,
+    uncheckedIngredients,
+  ]);
 
   return (
     <div className="body">
@@ -205,6 +429,7 @@ const Body = () => {
                 setSelectedSpirits([]);
                 setSelectedFlavors([]);
                 setSearchTerm("");
+                setShouldFilterEveryIngredient(true);
               }}
             >
               Clear all filters
@@ -215,7 +440,7 @@ const Body = () => {
       {!showFavorites &&
         Boolean(selectedSpirits.length || selectedFlavors.length) && (
           <div className="m-top-20 m-left-20">
-            <b>Filters: </b>
+            <b>Filters ({filteredCocktails.length}): </b>
             {selectedSpirits.map((spirit, index) =>
               !selectedFlavors.length && index === selectedSpirits.length - 1
                 ? spirit
@@ -236,30 +461,15 @@ const Body = () => {
               />
             ))}
           </div>
-          {!showFavorites &&
-            areFiltersApplied &&
-            Boolean(filteredCocktails.length) && (
-              <div className="ingredients">
-                <b>Ingredients for all results</b>
-                {ingredients
-                  .sort((a, b) =>
-                    a.toLowerCase().localeCompare(b.toLowerCase())
-                  )
-                  .map((ingredient) => {
-                    return (
-                      <IngredientCheckbox
-                        ingredient={ingredient}
-                        key={ingredient}
-                        onIngredientChange={onIngredientChange}
-                        selectedIngredients={selectedIngredients}
-                      />
-                    );
-                  })}
-              </div>
-            )}
+          {!showFavorites && IngredientContainer}
         </div>
       ) : (
-        <div className="m-top-20 m-left-20">No results found.</div>
+        <div className="flex">
+          <div className="no-results-found">
+            <div className="m-top-20 m-left-20">No results found.</div>
+          </div>
+          {!showFavorites && IngredientContainer}
+        </div>
       )}
     </div>
   );

@@ -33,15 +33,141 @@ export type CocktailType = {
   flavors: FlavorType[];
   ingredients: IngredientType[];
   directions: string[];
+  imageUrl?: string;
 };
 
 type CocktailsDataType = CocktailType[];
 
 export const cocktailsData: CocktailsDataType = [
   {
+    name: "cucumbercooler",
+    label: "Cucumber Cooler",
+    flavors: ["refreshing"],
+    spirits: ["non-alcoholic"],
+    ingredients: [
+      {
+        ingredient: "cucumber",
+        amount: "3 slices",
+      },
+      {
+        ingredient: "lemon juice",
+        amount: "1/2 oz.",
+      },
+      {
+        ingredient: "simple syrup",
+        amount: "1/3 oz.",
+      },
+      {
+        ingredient: "soda water",
+        amount: "3 oz.",
+      },
+    ],
+    directions: [
+      "Place a long cucumber slice along the inside of a stemless wine glass.",
+      "Shake all but soda water in a shaker full of ice.",
+      "Strain into the prepared glass with ice and top with club soda.",
+    ],
+  },
+  {
+    name: "blueberrythyme",
+    label: "Blueberry Thyme",
+    flavors: ["fruity", "refreshing", "sweet"],
+    spirits: ["non-alcoholic"],
+    ingredients: [
+      {
+        ingredient: "blueberries",
+        amount: "handful of",
+      },
+      {
+        ingredient: "thyme",
+        amount: "1 strand fresh",
+      },
+      {
+        ingredient: "lemon juice",
+        amount: "3/4 oz.",
+      },
+      {
+        ingredient: "honey",
+        amount: "1/2 oz.",
+      },
+      {
+        ingredient: "coconut water",
+        amount: "4 oz.",
+      },
+    ],
+    directions: [
+      "Muddle blueberries, thyme, honey, and lemon juice in a shaker.",
+      "Add coconut water and ice to shaker and shake vigorously.",
+      "Strain into a coupe glass filled with ice.",
+      "Garnish with fresh thyme and blueberries.",
+    ],
+  },
+  {
+    name: "honeyraspberryspritz",
+    label: "Honey Raspberry Spritz",
+    flavors: ["fruity", "refreshing", "sweet"],
+    spirits: ["non-alcoholic"],
+    ingredients: [
+      {
+        ingredient: "raspberries",
+        amount: "5-6",
+      },
+      {
+        ingredient: "mint leaves",
+        amount: "4-5",
+      },
+      {
+        ingredient: "lemon juice",
+        amount: "1/2 oz.",
+      },
+      {
+        ingredient: "honey",
+        amount: "1/2 oz.",
+      },
+      {
+        ingredient: "soda water",
+        amount: null,
+      },
+    ],
+    directions: [
+      "Muddle raspberries, mint leaves, lemon juice, and honey in a highball glass.",
+      "Top with ice and soda water.",
+      "Garnish with a mint sprig and raspberries.",
+    ],
+  },
+  {
+    name: "gingerpeachsmash",
+    label: "Ginger Peach Smash",
+    flavors: ["fruity", "sweet", "spicy"],
+    spirits: ["non-alcoholic"],
+    ingredients: [
+      {
+        ingredient: "peach nectar",
+        amount: "1 1/3 oz.",
+      },
+      {
+        ingredient: "lemon juice",
+        amount: "2/3 oz.",
+      },
+      {
+        ingredient: "ginger syrup",
+        amount: "1/3 oz.",
+      },
+      {
+        ingredient: "soda water",
+        amount: "3 oz.",
+      },
+    ],
+    directions: [
+      "Shake all but soda water in a shaker full of ice.",
+      "Strain into a rocks glass with ice and top with soda water.",
+      "Garnish with a peach slice.",
+    ],
+  },
+  {
     name: "cloverclub",
     label: "Clover Club",
-    flavors: ["fruity"],
+    flavors: ["floral", "fruity"],
     spirits: ["gin"],
     ingredients: [
       {
@@ -193,6 +319,7 @@ export const cocktailsData: CocktailsDataType = [
       "Shake soju (or vodka) and Bailey's with ice and pour into a chilled martini glass.",
       "Spoon the whipped coffee mixture on top of the glass and garnish with nutmeg.",
     ],
+    imageUrl: "https://i.imgur.com/rMvvlAR.jpeg",
   },
   {
     name: "honeydeuce",
@@ -221,11 +348,12 @@ export const cocktailsData: CocktailsDataType = [
       "Add vodka, raspberry liqueur (i.e. Chambord), and lemonade (Minute Maid recommended) to a highball glass filled with ice and stir.",
       "Garnish with a skewer of honeydew melon balls.",
     ],
+    imageUrl: "https://i.imgur.com/uYUge0t.jpeg",
   },
   {
     name: "melonaspritz",
     label: "Melona Spritz",
-    flavors: ["fruity", "rich", "sweet"],
+    flavors: ["fruity", "refreshing", "rich", "sweet"],
     spirits: ["soju"],
     ingredients: [
       {
@@ -253,11 +381,12 @@ export const cocktailsData: CocktailsDataType = [
       "Add all ingredients to a rocks glass and use the Melona ice pop to stir until the mixture turns a creamy light green.",
       "Garnish with an orange wedge and maraschino cherries.",
     ],
+    imageUrl: "https://i.imgur.com/Phqq8X4.jpeg",
   },
   {
     name: "blueberrycloverclub",
     label: "Blueberry Clover Club",
-    flavors: ["fruity", "floral"],
+    flavors: ["floral", "fruity"],
     spirits: ["gin"],
     ingredients: [
       {
@@ -282,6 +411,7 @@ export const cocktailsData: CocktailsDataType = [
       "Strain into a coupe glass.",
       "Garnish with blueberries.",
     ],
+    imageUrl: "https://i.imgur.com/UA4m4Uc.jpeg",
   },
   {
     name: "raspberryelderflowerspritz",
@@ -365,7 +495,7 @@ export const cocktailsData: CocktailsDataType = [
   {
     name: "applecidermimosa",
     label: "Apple Cider Mimosa",
-    flavors: ["fruity", "spicy", "sweet"],
+    flavors: ["fruity", "refreshing", "spicy", "sweet"],
     spirits: ["none"],
     ingredients: [
       {
@@ -390,6 +520,7 @@ export const cocktailsData: CocktailsDataType = [
       "Pour the apple cider into the flute and top off with sparkling wine.",
       "Garnish with a slice of apple or cinnamon stick.",
     ],
+    imageUrl: "https://i.imgur.com/JA5tQnW.jpeg",
   },
   {
     name: "applefizz",
@@ -691,7 +822,7 @@ export const cocktailsData: CocktailsDataType = [
   {
     name: "bellini",
     label: "Bellini",
-    flavors: ["fruity", "sweet"],
+    flavors: ["fruity", "refreshing", "sweet"],
     spirits: ["none"],
     ingredients: [
       {
@@ -1013,6 +1144,7 @@ export const cocktailsData: CocktailsDataType = [
       "Combine all ingredients in a highball glass with ice and stir.",
       "Garnish with a lemon wedge and blueberries.",
     ],
+    imageUrl: "https://i.imgur.com/nNVbLcV.jpeg",
   },
   {
     name: "bostonsour",
@@ -1525,7 +1657,7 @@ export const cocktailsData: CocktailsDataType = [
     spirits: ["gin", "vodka"],
     ingredients: [
       {
-        ingredient: "gin (or vodka)",
+        ingredient: "gin",
         amount: "2 1/2 oz.",
       },
       {
@@ -1538,7 +1670,7 @@ export const cocktailsData: CocktailsDataType = [
       },
     ],
     directions: [
-      "Add all the ingredients to a shaker with ice and stir until very cold.",
+      "Add all the ingredients (you can also use vodka instead of gin) to a shaker with ice and stir until very cold.",
       "Strain into a chilled martini glass and garnish with a lemon twist or olive brine.",
     ],
   },
@@ -1769,7 +1901,7 @@ export const cocktailsData: CocktailsDataType = [
         amount: "3/4 oz.",
       },
       {
-        ingredient: "grendaine",
+        ingredient: "grenadine",
         amount: "2 tsp.",
       },
       {
@@ -1886,7 +2018,7 @@ export const cocktailsData: CocktailsDataType = [
   {
     name: "grandroyalcloverclub",
     label: "Grand Royal Clover Club",
-    flavors: ["floral", "fruity", "sour", "sweet"],
+    flavors: ["floral", "fruity"],
     spirits: ["gin"],
     ingredients: [
       {
@@ -3537,7 +3669,7 @@ export const cocktailsData: CocktailsDataType = [
         amount: "3/4 oz.",
       },
       {
-        ingredient: "greem Chartreuse",
+        ingredient: "green Chartreuse",
         amount: "3 dashes",
       },
       {
@@ -3830,6 +3962,7 @@ export const cocktailsData: CocktailsDataType = [
       "Add ice, lime juice, vodka, and hard cider.",
       "Stir and garnish with remaining strawberry and lime wedge.",
     ],
+    imageUrl: "https://i.imgur.com/UfIXd24.jpeg",
   },
   {
     name: "teardrop",
@@ -4029,6 +4162,7 @@ export const cocktailsData: CocktailsDataType = [
       "Blend all the ingredients for 10-15 seconds and pour the mixture inot a fizzio glass.",
       "Garnish with blueberries and a pineapple wedge.",
     ],
+    imageUrl: "https://i.imgur.com/YVHRdOG.jpeg",
   },
   {
     name: "whiskeyrickey",

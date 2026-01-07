@@ -1,7 +1,6 @@
 .App {
   background-color: #282c34;
   min-height: 100vh;
-  overflow-y: scroll;
 }
 
 .App-header {
@@ -147,6 +146,10 @@ h2 {
   align-items: center;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
 .flex {
   display: flex;
 }
@@ -180,20 +183,48 @@ h2 {
   }
 }
 
+.cocktail-image {
+  align-items: center;
+  margin: 6px;
+  width: 240px;
+  border-radius: 10px;
+  border: 3px solid rgb(235, 235, 235);
+}
+
 [id*="details-"] {
   display: none;
 }
 
+.no-results-found {
+  width: 552px;
+}
+
+.and-or-toggle-button {
+  padding: 6px;
+  margin: 6px 6px 6px 0px;
+  font-size: 8pt;
+  font-weight: bold;
+}
+
 .ingredients {
+  background-color: #455672;
   display: inline-block;
-  height: 800px;
-  margin: 20px;
+  border: 2px white solid;
+  padding: 10px;
+  width: 340px;
+  height: 400px;
+  margin: 20px 20px 20px 140px;
 }
 
 @media (max-width: 670px) {
   .ingredients {
     display: none;
   }
+}
+
+.ingredient-list {
+  overflow-y: scroll;
+  height: 320px;
 }
 
 @media (max-width: 670px) {
@@ -206,4 +237,21 @@ h2 {
   height: 30px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.ingredient-search-input {
+  font-size: 12pt;
+  width: 260px;
+  height: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 4px;
+}
+
+.link-button {
+  cursor: pointer;
+}
+
+.link-button:hover {
+  color: #e1a479;
 }
