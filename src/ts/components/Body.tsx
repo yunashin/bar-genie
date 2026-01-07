@@ -1,21 +1,19 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import {
-  FlavorType,
-  SpiritType,
-  cocktailsData,
-  IngredientType,
-} from "../../data/cocktails";
+import { FlavorType, SpiritType, cocktailsData } from "../../data/cocktails";
 import MultiSelect from "./helperComponents/MultiSelect";
 import { useFindCocktailsContext } from "../context/FindCocktailsContext";
 import CocktailCard from "./CocktailCard";
 import IngredientCheckbox from "./IngredientCheckbox";
+import { getAreIngredientsSelected } from "./utils/cocktailUtils";
 
 const spiritOptions = [
+  { name: "Brandy", value: "brandy" },
   { name: "Bourbon", value: "bourbon" },
   { name: "Gin", value: "gin" },
   { name: "Pisco", value: "Pisco" },
   { name: "Rum", value: "rum" },
+  { name: "Rye", value: "rye" },
   { name: "Soju", value: "soju" },
   { name: "Tequila", value: "tequila" },
   { name: "Vodka", value: "vodka" },
@@ -65,13 +63,11 @@ const Body = () => {
           if (showFavorites) {
             return favoriteCocktailNames.includes(cocktail.name);
           }
-          const areIngredientsSelected = shouldFilterEveryIngredient
-            ? cocktail.ingredients.every((ingredient) =>
-                selectedIngredients.includes(ingredient.ingredient)
-              )
-            : cocktail.ingredients.some((ingredient) =>
-                selectedIngredients.includes(ingredient.ingredient)
-              );
+          const areIngredientsSelected = getAreIngredientsSelected({
+            cocktail,
+            selectedIngredients,
+            shouldFilterEveryIngredient,
+          });
           return (
             (selectedSpirits.length
               ? selectedSpirits.some((spirit) =>
@@ -111,9 +107,16 @@ const Body = () => {
 
   const ingredients = Array.from(
     new Set(
-      cocktailsData
-        .flatMap((cocktail) => cocktail.ingredients)
-        .map((ingredient: IngredientType) => ingredient.ingredient)
+      cocktailsData.flatMap((cocktail) =>
+        cocktail.ingredients.reduce<string[]>((acc, ingredient) => {
+          const allIngredients = acc;
+          allIngredients.push(ingredient.ingredient);
+          if (ingredient.altIngredient) {
+            allIngredients.push(ingredient.altIngredient);
+          }
+          return allIngredients;
+        }, [])
+      )
     )
   );
 
@@ -270,12 +273,20 @@ const Body = () => {
   const ingredientSearchInputXButton = document.getElementById(
     "ingredient-search-input-x-button"
   );
+  const searchInput = document.getElementById("search-input");
+  const searchInputXButton = document.getElementById("search-input-x-button");
 
   useEffect(() => {
     ingredientSearchInputXButton?.addEventListener("click", () => {
       ingredientSearchInput?.focus();
     });
   }, [ingredientSearchInput, ingredientSearchInputXButton]);
+
+  useEffect(() => {
+    searchInputXButton?.addEventListener("click", () => {
+      searchInput?.focus();
+    });
+  }, [searchInput, searchInputXButton]);
 
   const IngredientContainer = useMemo(() => {
     return (
@@ -378,11 +389,11 @@ const Body = () => {
         </button>
       </div>
       {!showFavorites && (
-        <div>
-          <span className="m-left-20 mobile-hidden">
+        <div className="flex align-center">
+          <div className="m-left-20 mobile-hidden">
             <b>Filter by</b>
-          </span>
-          <span className="m-left-20 mobile-hidden">
+          </div>
+          <div className="m-left-20 mobile-hidden">
             <MultiSelect
               onChange={onSpiritsChange}
               onOpenChange={(showDropdown: boolean) => {
@@ -396,8 +407,8 @@ const Body = () => {
             >
               <>Spirits</>
             </MultiSelect>
-          </span>
-          <span className="m-left-20 mobile-hidden">
+          </div>
+          <div className="m-left-20 mobile-hidden">
             <MultiSelect
               onChange={onFlavorsChange}
               onOpenChange={(showDropdown: boolean) => {
@@ -411,9 +422,10 @@ const Body = () => {
             >
               <>Flavors</>
             </MultiSelect>
-          </span>
-          <span className="m-left-20 m-top-mobile">
+          </div>
+          <div className="flex align-center m-left-20 m-top-mobile">
             <input
+              id="search-input"
               className="search"
               type="text"
               onChange={(event: React.FocusEvent<HTMLInputElement>) =>
@@ -422,8 +434,17 @@ const Body = () => {
               placeholder="Search.."
               value={searchTerm}
             />
-          </span>
-          <span className="m-left-20 mobile-hidden">
+            <div
+              id="search-input-x-button"
+              className="link-button"
+              onClick={() => {
+                setSearchTerm("");
+              }}
+            >
+              X
+            </div>
+          </div>
+          <div className="m-left-20 mobile-hidden">
             <button
               onClick={() => {
                 setSelectedSpirits([]);
@@ -434,7 +455,7 @@ const Body = () => {
             >
               Clear all filters
             </button>
-          </span>
+          </div>
         </div>
       )}
       {!showFavorites &&
