@@ -4,12 +4,14 @@ export type SpiritType =
   | "gin"
   | "Pisco"
   | "rum"
+  | "rye"
   | "soju"
   | "tequila"
   | "vodka"
   | "whiskey"
   | "none"
   | "non-alcoholic";
+
 export type FlavorType =
   | "bitter"
   | "dry"
@@ -21,8 +23,10 @@ export type FlavorType =
   | "sour"
   | "spicy"
   | "sweet";
+
 export type IngredientType = {
   ingredient: string;
+  altIngredient?: string;
   amount: string | null;
 };
 
@@ -429,6 +433,7 @@ export const cocktailsData: CocktailsDataType = [
       },
       {
         ingredient: "lemon juice",
+        altIngredient: "lime juice",
         amount: "1/2 oz.",
       },
       {
@@ -618,7 +623,8 @@ export const cocktailsData: CocktailsDataType = [
         amount: "3/4 oz. white",
       },
       {
-        ingredient: "mandarine brandy (or Grand Marnier)",
+        ingredient: "mandarine brandy",
+        altIngredient: "Grand Marnier",
         amount: "3/4 oz.",
       },
       {
@@ -636,7 +642,7 @@ export const cocktailsData: CocktailsDataType = [
     ],
     directions: [
       "Put crushed ice into a cocktail shaker.",
-      "Pour the rum, brandy, orange juice, and pineapple juice over the ice.",
+      "Pour the rum, brandy (or Grand Marnier), orange juice, and pineapple juice over the ice.",
       "Add the grenadine and shake vigorously.",
       "Strain into a chilled highball glass and garnish with a pineapple slice and maraschino cherry.",
     ],
@@ -852,7 +858,7 @@ export const cocktailsData: CocktailsDataType = [
   {
     name: "blackrussian",
     label: "Black Russian",
-    flavors: ["rich"],
+    flavors: ["bitter"],
     spirits: ["vodka"],
     ingredients: [
       {
@@ -995,7 +1001,8 @@ export const cocktailsData: CocktailsDataType = [
         amount: "3/4 oz.",
       },
       {
-        ingredient: "melon (or mango)",
+        ingredient: "melon",
+        altIngredient: "mango",
         amount: "4 cubes",
       },
       {
@@ -1004,7 +1011,7 @@ export const cocktailsData: CocktailsDataType = [
       },
     ],
     directions: [
-      "Put the gin, passionfruit nectar, melon cubes, and 4-6 cracked ice cubes into a blender and blend until smooth and frosted.",
+      "Put the gin, passionfruit nectar, melon (or mango) cubes, and 4-6 cracked ice cubes into a blender and blend until smooth and frosted.",
       "Pour into a chilled highball glass filled with cracked ice and top off with the blue curacao.",
     ],
   },
@@ -1157,7 +1164,8 @@ export const cocktailsData: CocktailsDataType = [
         amount: "1 3/4 oz.",
       },
       {
-        ingredient: "lemon juice (or lime juice)",
+        ingredient: "lemon juice",
+        altIngredient: "lime juice",
         amount: "3/4 oz.",
       },
       {
@@ -1171,7 +1179,7 @@ export const cocktailsData: CocktailsDataType = [
     ],
     directions: [
       "Put cracked ice into a shaker.",
-      "Pour the lemon juice, whiskey, and simple syrup over the ice.",
+      "Pour the lemon (or lime) juice, whiskey, and simple syrup over the ice.",
       "Add the egg white.",
       "Shake until chilled. Strain into a martini glass and garnish with a lemon slice and a maraschino cherry.",
     ],
@@ -1246,7 +1254,8 @@ export const cocktailsData: CocktailsDataType = [
         amount: "2 oz.",
       },
       {
-        ingredient: "lemon juice (or lime juice)",
+        ingredient: "lemon juice",
+        altIngredient: "lime juice",
         amount: "3/4 oz.",
       },
       {
@@ -1255,7 +1264,7 @@ export const cocktailsData: CocktailsDataType = [
       },
     ],
     directions: [
-      "Shake the lemon juice, brandy, and simple syrup well over ice and strain into a martini glass.",
+      "Shake the lemon (or lime) juice, brandy, and simple syrup well over ice and strain into a martini glass.",
       "Garnish with a lime slice and a maraschino cherry, and serve.",
     ],
   },
@@ -1472,7 +1481,8 @@ export const cocktailsData: CocktailsDataType = [
         amount: "1 3/4 oz.",
       },
       {
-        ingredient: "Madeira (or sherry)",
+        ingredient: "Madeira",
+        altIngredient: "sherry",
         amount: "1 1/4 oz.",
       },
       {
@@ -1481,7 +1491,7 @@ export const cocktailsData: CocktailsDataType = [
       },
     ],
     directions: [
-      "Pour the ingredients over cracked ice in a mixing glass.",
+      "Pour the gin, Madeira (or sherry), and grenadine over cracked ice in a mixing glass.",
       "Stir well to mix, then strain into a chilled martini glass.",
       "Garnish with maraschino cherries and serve.",
     ],
@@ -1658,6 +1668,7 @@ export const cocktailsData: CocktailsDataType = [
     ingredients: [
       {
         ingredient: "gin",
+        altIngredient: "vodka",
         amount: "2 1/2 oz.",
       },
       {
@@ -1670,7 +1681,7 @@ export const cocktailsData: CocktailsDataType = [
       },
     ],
     directions: [
-      "Add all the ingredients (you can also use vodka instead of gin) to a shaker with ice and stir until very cold.",
+      "Add the gin (or vodka), vermouth, and bitters to a shaker with ice and stir until very cold.",
       "Strain into a chilled martini glass and garnish with a lemon twist or olive brine.",
     ],
   },
@@ -2907,7 +2918,8 @@ export const cocktailsData: CocktailsDataType = [
     spirits: ["vodka", "whiskey"],
     ingredients: [
       {
-        ingredient: "vodka (or peanut butter whiskey)",
+        ingredient: "vodka",
+        altIngredient: "peanut butter whiskey",
         amount: "1 1/4 oz.",
       },
       {
@@ -2920,7 +2932,7 @@ export const cocktailsData: CocktailsDataType = [
       },
     ],
     directions: [
-      "Shake the Kahlua, Bailey's, and vodka vigorously over cracked ice until well frosted.",
+      "Shake the Kahlua, Bailey's, and vodka (or peanut butter whiskey) vigorously over cracked ice until well frosted.",
       "Strain into a chilled glass and serve.",
     ],
   },
@@ -2961,10 +2973,11 @@ export const cocktailsData: CocktailsDataType = [
     name: "oldfashioned",
     label: "Old Fashioned",
     flavors: ["dry"],
-    spirits: ["bourbon", "whiskey"],
+    spirits: ["bourbon", "rye"],
     ingredients: [
       {
-        ingredient: "bourbon (or rye whiskey)",
+        ingredient: "bourbon",
+        altIngredient: "rye",
         amount: "2 oz.",
       },
       {
@@ -2977,7 +2990,7 @@ export const cocktailsData: CocktailsDataType = [
       },
     ],
     directions: [
-      "Combine ingredients in a rocks glass, fill with ice, and stir for 15-20 seconds or until chilled.",
+      "Combine bourbon (or rye), bitters, and simple sytrup in a rocks glass, fill with ice, and stir for 15-20 seconds or until chilled.",
       "Garnish with an orange peel and/or cocktail cherry.",
     ],
   },
@@ -3612,7 +3625,8 @@ export const cocktailsData: CocktailsDataType = [
         amount: "1 3/4 oz.",
       },
       {
-        ingredient: "cranberry juice (or peach juice)",
+        ingredient: "cranberry juice",
+        altIngredient: "peach juice",
         amount: "2 1/2 oz.",
       },
       {
@@ -3621,7 +3635,7 @@ export const cocktailsData: CocktailsDataType = [
       },
     ],
     directions: [
-      "Put crushed ice into a shaker and pour over the peach schnapps, vodka, orange juice, and cranberry juice.",
+      "Put crushed ice into a shaker and pour over the peach schnapps, vodka, orange juice, and cranberry (or peach) juice.",
       "Shake until well-frosted and strain into a rocks glass filled with ice.",
       "Squeeze the lemon juice over the top and garnish with an orange peel.",
     ],
@@ -3975,7 +3989,8 @@ export const cocktailsData: CocktailsDataType = [
         amount: "3/4 oz.",
       },
       {
-        ingredient: "apricot nectar (or peach nectar)",
+        ingredient: "apricot nectar",
+        altIngredient: "peach nectar",
         amount: "1 3/4 oz.",
       },
       {
@@ -3988,7 +4003,7 @@ export const cocktailsData: CocktailsDataType = [
       },
     ],
     directions: [
-      "Put the gin, apricot nectar, and cream into a blender for 5-10 seconds, until thick and frothy.",
+      "Put the gin, apricot (or peach) nectar, and cream into a blender for 5-10 seconds, until thick and frothy.",
       "Pour into a highball glass filled with crushed ice.",
       "Splash the strawberry syrup on the top and garnish with strawberry and peach slices.",
     ],

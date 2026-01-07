@@ -234,7 +234,9 @@ h2 {
 }
 
 .search {
+  font-size: 14pt;
   height: 30px;
+  width: 180px;
   border-radius: 5px;
   cursor: pointer;
 }
