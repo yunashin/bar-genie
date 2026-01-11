@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/bar-genie/static/css/main.7670f8f0.css",
-    "main.js": "/bar-genie/static/js/main.07a2822a.js",
+    "main.css": "/bar-genie/static/css/main.25873461.css",
+    "main.js": "/bar-genie/static/js/main.4043f4ed.js",
     "static/js/787.d0103fbd.chunk.js": "/bar-genie/static/js/787.d0103fbd.chunk.js",
     "static/media/AriaLogo.png": "/bar-genie/static/media/AriaLogo.2b0dc884950e4f10018c.png",
     "index.html": "/bar-genie/index.html",
-    "main.7670f8f0.css.map": "/bar-genie/static/css/main.7670f8f0.css.map",
-    "main.07a2822a.js.map": "/bar-genie/static/js/main.07a2822a.js.map",
+    "main.25873461.css.map": "/bar-genie/static/css/main.25873461.css.map",
+    "main.4043f4ed.js.map": "/bar-genie/static/js/main.4043f4ed.js.map",
     "787.d0103fbd.chunk.js.map": "/bar-genie/static/js/787.d0103fbd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7670f8f0.css",
-    "static/js/main.07a2822a.js"
+    "static/css/main.25873461.css",
+    "static/js/main.4043f4ed.js"
   ]
 }
