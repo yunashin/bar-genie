@@ -241,6 +241,24 @@ h2 {
   cursor: pointer;
 }
 
+.hidden-toolbar {
+  height: 36px;
+}
+
+.optional {
+  color: rgb(192, 192, 192);
+}
+
+.optional-tag {
+  border-radius: 4px;
+  background-color: rgb(192, 192, 192);
+  font-size: 8pt;
+  font-weight: bold;
+  color: rgb(56, 56, 56);
+  padding: 2px 4px;
+  margin: 2px 6px 2px 0px;
+}
+
 .ingredient-search-input {
   font-size: 12pt;
   width: 260px;

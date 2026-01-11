@@ -7,9 +7,9 @@ const getIsIngredientSelected = ({
   ingredient: IngredientType;
   selectedIngredients: string[];
 }) => {
-  const ingredientIsSelected = selectedIngredients.includes(
-    ingredient.ingredient
-  );
+  const ingredientIsSelected = !ingredient.optional
+    ? selectedIngredients.includes(ingredient.ingredient)
+    : true;
   return ingredient.altIngredient
     ? selectedIngredients.includes(ingredient.altIngredient) ||
         ingredientIsSelected

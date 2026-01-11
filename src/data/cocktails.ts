@@ -28,6 +28,7 @@ export type IngredientType = {
   ingredient: string;
   altIngredient?: string;
   amount: string | null;
+  optional?: boolean;
 };
 
 export type CocktailType = {
@@ -43,6 +44,32 @@ export type CocktailType = {
 type CocktailsDataType = CocktailType[];
 
 export const cocktailsData: CocktailsDataType = [
+  {
+    name: "smoresmartini",
+    label: "S'mores Martini",
+    flavors: ["rich", "sweet"],
+    spirits: ["vodka"],
+    ingredients: [
+      {
+        ingredient: "marshmallow vodka",
+        amount: "1/2 oz.",
+      },
+      {
+        ingredient: "chocolate liqueur",
+        amount: "1 oz.",
+      },
+      {
+        ingredient: "heavy cream",
+        amount: "1/2 oz.",
+      },
+    ],
+    directions: [
+      "Dip the rim of a coupe glass in chocolate syrup (1/2 tbsp.) and then in crushed graham crackers (1 tbsp.).",
+      "Pour the chocolate liqueur slowly over the back of a spoon and into the rimmed glass.",
+      "Mix the vodka and heavy cream together in a separate glass and pour slowly over the back of a spoon to create a second layer.",
+      "Garnish with a lightly torched marshmallow on skewer.",
+    ],
+  },
   {
     name: "cucumbercooler",
     label: "Cucumber Cooler",
@@ -88,7 +115,7 @@ export const cocktailsData: CocktailsDataType = [
       },
       {
         ingredient: "lemon juice",
-        amount: "3/4 oz.",
+        amount: "1/2 oz.",
       },
       {
         ingredient: "honey",
@@ -102,7 +129,7 @@ export const cocktailsData: CocktailsDataType = [
     directions: [
       "Muddle blueberries, thyme, honey, and lemon juice in a shaker.",
       "Add coconut water and ice to shaker and shake vigorously.",
-      "Strain into a coupe glass filled with ice.",
+      "Strain with a fine mesh strainer into a coupe glass.",
       "Garnish with fresh thyme and blueberries.",
     ],
   },
@@ -233,7 +260,7 @@ export const cocktailsData: CocktailsDataType = [
     name: "shirleytemplefloat",
     label: "Shirley Temple Float",
     flavors: ["rich", "sweet"],
-    spirits: ["non-alcoholic"],
+    spirits: ["non-alcoholic", "vodka"],
     ingredients: [
       {
         ingredient: "vanilla ice cream",
@@ -246,6 +273,11 @@ export const cocktailsData: CocktailsDataType = [
       {
         ingredient: "Sprite",
         amount: "6 oz.",
+      },
+      {
+        ingredient: "vodka",
+        amount: "1 1/2 oz.",
+        optional: true,
       },
     ],
     directions: [
@@ -530,7 +562,7 @@ export const cocktailsData: CocktailsDataType = [
   {
     name: "applefizz",
     label: "Apple Fizz",
-    flavors: ["fruity", "sour", "sweet"],
+    flavors: ["fruity", "refreshing", "sweet"],
     spirits: ["brandy"],
     ingredients: [
       {
@@ -538,7 +570,7 @@ export const cocktailsData: CocktailsDataType = [
         amount: "3/4 oz.",
       },
       {
-        ingredient: "sparkling hard cider",
+        ingredient: "hard cider",
         amount: "4 oz.",
       },
       {
@@ -555,8 +587,8 @@ export const cocktailsData: CocktailsDataType = [
       },
     ],
     directions: [
-      "Shake the ingredients together over ice.",
-      "Pour immediately into a rocks glass.",
+      "Shake all but cider together in a shaker full of ice.",
+      "Pour immediately into a rocks glass and top with hard cider.",
       "Garnish with a slice of lemon and apple and serve.",
     ],
   },
@@ -1439,6 +1471,7 @@ export const cocktailsData: CocktailsDataType = [
       "Combine the Bailey's, creme de cacao, and vodka in a shaker filled with ice. Shake until thoroughly chilled.",
       "Strain drink into glass and garnis with shaved chocolate.",
     ],
+    imageUrl: "https://i.imgur.com/xBm2IUi.jpeg",
   },
   {
     name: "cosmopolitan",
@@ -1859,6 +1892,7 @@ export const cocktailsData: CocktailsDataType = [
       },
       {
         ingredient: "simple syrup",
+        altIngredient: "blueberry syrup",
         amount: "1/2 oz.",
       },
     ],
@@ -2444,6 +2478,7 @@ export const cocktailsData: CocktailsDataType = [
       "Blend all the ingredients until smooth.",
       "Pour the blended mixture into the rimmed glass garnish with a strawberry.",
     ],
+    imageUrl: "https://i.imgur.com/jeIIyZI.jpeg",
   },
   {
     name: "maidensprayer",
