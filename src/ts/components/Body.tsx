@@ -384,11 +384,20 @@ const Body = () => {
           }}
         >
           <b>
-            <u>{showFavorites ? "View all" : "Favorites"}</u>
+            <div style={showFavorites ? { textDecoration: "underline" } : {}}>
+              {!showFavorites && "♥️ "}
+              <span
+                style={!showFavorites ? { textDecoration: "underline" } : {}}
+              >
+                {showFavorites ? "View all" : "Favorites"}
+              </span>
+            </div>
           </b>
         </button>
       </div>
-      {!showFavorites && (
+      {showFavorites ? (
+        <div className="hidden-toolbar" />
+      ) : (
         <div className="flex align-center">
           <div className="m-left-20 mobile-hidden">
             <b>Filter by</b>
